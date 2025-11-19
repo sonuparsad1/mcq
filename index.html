@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Web Technologies Big MCQ Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ================== THEME VARIABLES ================== */
+    :root {
+      --bg: #f3f6fb;
+      --card: #ffffff;
+      --border: #d3ddec;
+      --accent: #2563eb;
+      --accent-soft: #e0edff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+    }
+
+    body[data-theme="blue"] {
+      --bg: #f3f6fb;
+      --card: #ffffff;
+      --border: #d3ddec;
+      --accent: #2563eb;
+      --accent-soft: #e0edff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+    }
+
+    body[data-theme="green"] {
+      --bg: #ecfdf5;
+      --card: #ffffff;
+      --border: #bbf7d0;
+      --accent: #16a34a;
+      --accent-soft: #dcfce7;
+      --text-main: #064e3b;
+      --text-muted: #4b5563;
+      --correct: #15803d;
+      --wrong: #b91c1c;
+    }
+
+    body[data-theme="red"] {
+      --bg: #fef2f2;
+      --card: #ffffff;
+      --border: #fecaca;
+      --accent: #dc2626;
+      --accent-soft: #fee2e2;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --correct: #16a34a;
+      --wrong: #b91c1c;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #020617;
+      --card: #0b1120;
+      --border: #1f2937;
+      --accent: #38bdf8;
+      --accent-soft: #0f172a;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --correct: #22c55e;
+      --wrong: #f97373;
+    }
+
+    /* ================== BASE ================== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+
+    .header-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .theme-select {
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 12px 16px 32px;
+    }
+
+    main {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    /* ================== QUESTION NAV ================== */
+    .q-nav {
+      width: 210px;
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      position: sticky;
+      top: 80px;
+    }
+
+    .q-nav-title {
+      width: 100%;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .q-nav-btn {
+      flex: 0 0 auto;
+      min-width: 44px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+    }
+
+    .q-nav-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(15, 23, 42, 0.18);
+    }
+
+    .q-nav-btn.current {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-1px) scale(1.04);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    .q-nav-btn.correct {
+      background: var(--correct);
+      color: #ffffff;
+      border-color: var(--correct);
+    }
+
+    .q-nav-btn.wrong {
+      background: var(--wrong);
+      color: #ffffff;
+      border-color: var(--wrong);
+    }
+
+    /* Mobile horizontal scroll */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+      }
+      .q-nav {
+        width: 100%;
+        position: static;
+        max-height: none;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+      }
+      .q-nav-title {
+        width: auto;
+        margin-right: 8px;
+      }
+      .q-nav::-webkit-scrollbar {
+        height: 6px;
+      }
+      .q-nav::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 999px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .q-nav-btn {
+        min-width: 38px;
+        height: 30px;
+        font-size: 12px;
+      }
+    }
+
+    /* ================== QUIZ CARD ================== */
+    .quiz-card {
+      flex: 1;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 16px 14px 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .quiz-meta-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      margin-right: 4px;
+    }
+
+    .question-box {
+      margin-top: 6px;
+      animation: fadeInUp 0.25s ease-out;
+    }
+
+    #question-text {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    #unit-label,
+    #level-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .difficulty-pill {
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    .diff-easy {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .diff-medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .diff-hard {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .options {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 8px;
+    }
+
+    .option-item {
+      margin-bottom: 6px;
+    }
+
+    .option-label {
+      display: block;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 14px;
+      cursor: pointer;
+      transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.08s ease;
+    }
+
+    .option-label:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .option-input {
+      margin-right: 6px;
+    }
+
+    .option-correct {
+      border-color: var(--correct) !important;
+      background: rgba(22, 163, 74, 0.08) !important;
+    }
+
+    .option-wrong {
+      border-color: var(--wrong) !important;
+      background: rgba(220, 38, 38, 0.08) !important;
+    }
+
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+      transition:
+        background 0.18s,
+        transform 0.08s,
+        box-shadow 0.12s,
+        color 0.18s;
+    }
+
+    button:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    #btn-check {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    #btn-check:hover {
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.6);
+    }
+
+    #btn-next,
+    #btn-prev {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    #btn-reset {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    #btn-export {
+      background: #16a34a;
+      color: #ffffff;
+    }
+
+    #feedback {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    #feedback.correct {
+      color: var(--correct);
+    }
+
+    #feedback.wrong {
+      color: var(--wrong);
+    }
+
+    #explanation {
+      margin-top: 4px;
+      font-size: 13px;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 8px 9px;
+      border: 1px dashed var(--border);
+    }
+
+    .score-panel {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .score-panel span {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    .help-text {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="blue">
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-icon">🌐</div>
+      <div>
+        <h1>Web Technologies MCQ Quiz</h1>
+        <p class="subtitle">HTML · CSS · JavaScript · Units I–IV · By sonu parsad</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <label style="font-size:12px;">Theme:
+        <select id="theme-select" class="theme-select">
+          <option value="blue">Blue · Default</option>
+          <option value="green">Green · Study</option>
+          <option value="red">Red · Exam</option>
+          <option value="dark">Dark · Focus</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <main>
+    <!-- Left: Question selector -->
+    <aside class="q-nav" id="q-nav">
+      <div class="q-nav-title">Questions</div>
+      <!-- buttons injected by JS -->
+    </aside>
+
+    <!-- Right: Quiz card -->
+    <section class="quiz-card">
+      <div class="quiz-meta-top">
+        <div>
+          <span class="badge">B.Tech CSE · Web Tech</span>
+          <span class="badge">MCQ Practice</span>
+        </div>
+        <div id="meta-info"></div>
+      </div>
+
+      <div id="question-box" class="question-box">
+        <div id="question-text"></div>
+        <div id="unit-label"></div>
+        <div id="level-label"></div>
+        <ul id="options-list" class="options"></ul>
+      </div>
+
+      <div class="controls">
+        <div class="controls-left">
+          <button id="btn-check">Check Answer</button>
+          <button id="btn-prev">⬅ Previous</button>
+          <button id="btn-next">Next ➡</button>
+        </div>
+        <div class="controls-right">
+          <button id="btn-reset">Reset Quiz</button>
+          <button id="btn-export">Export PDF</button>
+        </div>
+      </div>
+
+      <div id="feedback"></div>
+      <div id="explanation"></div>
+
+      <div class="score-panel">
+        <span id="score-text">Score: 0 / 0</span>
+        <span id="correct-count">Correct: 0</span>
+        <span id="wrong-count">Wrong: 0</span>
+        <span id="attempted-count">Attempted: 0</span>
+      </div>
+
+      <div class="help-text">
+        • Select an answer, then press <strong>Check Answer</strong> (it will lock for that question).<br>
+        • Left panel pills = jump to any question. Colors: green = correct, red = wrong, default = not attempted.<br>
+        • <strong>Export PDF</strong> creates a colored report of attempted questions with explanations.
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  /*********************************************************
+   🔥 PASTE YOUR FULL QUESTIONS ARRAY HERE:
+   const questions = [ {...}, {...}, ... ];
+  **********************************************************/
+//   const questions = [
+    /* PASTE YOUR QUESTION OBJECTS HERE
+       Example object shape:
+       {
+         unit: "Unit I",
+         difficulty: "Easy",
+         topic: "Document Structure",
+         question: "Which part of an HTML document contains metadata?",
+         options: ["<body>", "<head>", "<footer>", "<section>"],
+         answer: 1,
+         explanation: "The <head> element contains metadata and links."
+       }
+    */
+//   ];
+const questions = [
+  // ========== UNIT I – Fundamentals of HTML (20 questions) ==========
+  {
+    unit: "Unit I",
+    difficulty: "Easy",
+    topic: "Document Structure",
+    question: "Which part of an HTML document normally contains the page title, metadata and linked CSS files?",
+    options: ["<body> section","<head> section","<footer> section","<article> section"],
+    answer: 1,
+    explanation: "The <head> section stores metadata, title and linked resources like CSS and favicons."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Easy",
+    topic: "Headings",
+    question: "How many levels of headings are provided by HTML?",
+    options: ["3 (h1–h3)","4 (h1–h4)","5 (h1–h5)","6 (h1–h6)"],
+    answer: 3,
+    explanation: "HTML defines six heading levels from <h1> to <h6>."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Easy",
+    topic: "Paragraphs",
+    question: "Which tag is used to define a block of text as a paragraph?",
+    options: ["<txt>","<p>","<para>","<text>"],
+    answer: 1,
+    explanation: "The <p> element marks a paragraph of text."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Easy",
+    topic: "Line Break",
+    question: "Which tag inserts a single line break inside a paragraph without starting a new paragraph block?",
+    options: ["<lb>","<break>","<br>","<newline>"],
+    answer: 2,
+    explanation: "<br> inserts a line break within the current block."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Easy",
+    topic: "Strong vs Bold",
+    question: "Which tag is preferred to show important text semantically (not just visually bold)?",
+    options: ["<b>","<strong>","<big>","<mark>"],
+    answer: 1,
+    explanation: "<strong> indicates strong importance semantically; browsers usually render it bold."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Inline vs Block",
+    question: "Which of these is an inline HTML element?",
+    options: ["<section>","<article>","<span>","<div>"],
+    answer: 2,
+    explanation: "<span> is an inline element; <div>, <article>, <section> are block-level."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Semantic Tags",
+    question: "Which element best represents a self-contained piece of content that could be independently reused or syndicated?",
+    options: ["<div>","<section>","<article>","<span>"],
+    answer: 2,
+    explanation: "<article> is used for independent, self-contained content like posts or news."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Semantic Layout",
+    question: "Which HTML5 element is most suitable for wrapping website navigation links?",
+    options: ["<menu>","<nav>","<aside>","<footer>"],
+    answer: 1,
+    explanation: "<nav> is the semantic container for navigation links."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Metadata",
+    question: "Which meta tag is used to correctly display Indian languages like Hindi on a web page?",
+    options: ["<meta charset='ANSI'>","<meta charset='ISO-8859-1'>","<meta charset='UTF-8'>","<meta charset='UNICODE'>"],
+    answer: 2,
+    explanation: "UTF-8 supports almost all languages including Hindi."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Quotations",
+    question: "Which tag is used to indicate title of a creative work like a book or movie?",
+    options: ["<q>","<cite>","<code>","<abbr>"],
+    answer: 1,
+    explanation: "<cite> indicates names of creative works."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Abbreviation",
+    question: "Why do we use title attribute inside <abbr> tag?",
+    options: ["To increase font size","To underline the abbreviation","To show full form on hover","To change color"],
+    answer: 2,
+    explanation: "<abbr title=''> shows full form on hover and helps accessibility."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Address",
+    question: "What type of content is appropriate inside <address> element?",
+    options: ["Contact info of the author","Any random paragraph","Only GPS location","Programming code"],
+    answer: 0,
+    explanation: "<address> is used for contact details of document author."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Accessibility",
+    question: "Which improves screen reader accessibility the MOST?",
+    options: ["Using <b> for bold","Using <br> for spacing","Using semantic tags and proper heading levels","Only adding CSS classes"],
+    answer: 2,
+    explanation: "Semantic structure helps assistive technologies understand page hierarchy."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Heading Order",
+    question: "Which heading practice is best?",
+    options: ["Multiple <h1> anywhere","Only <h3> everywhere","Proper nested heading levels after one <h1>","No headings"],
+    answer: 2,
+    explanation: "One <h1> and nested headings help SEO and accessibility."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Inline Elements",
+    question: "Which is TRUE about inline elements?",
+    options: ["They start on new line","They cannot be styled","They flow with text and don't break line","They can't include text"],
+    answer: 2,
+    explanation: "Inline elements don't break line and flow with text."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Comments",
+    question: "Why are HTML comments used?",
+    options: ["To increase speed","To hide code from browser temporarily","To compress code","To disable JavaScript"],
+    answer: 1,
+    explanation: "Comments help in debugging and documentation without removing code."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Entities",
+    question: "Which character must always be encoded if displayed as text?",
+    options: ["&","<","/","|"],
+    answer: 1,
+    explanation: "< is used to open tags so must be written as &lt; when shown as text."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Doctype",
+    question: "What does <!DOCTYPE html> do?",
+    options: ["Loads CSS","Activates JavaScript","Forces standard rendering mode","Adds responsive layout"],
+    answer: 2,
+    explanation: "Doctype avoids browser quirks mode and ensures standard HTML5 rendering."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Small Tag",
+    question: "Which content fits best inside <small> tag?",
+    options: ["Big titles","Quotes","Legal disclaimers or copyright notices","Highlighted text"],
+    answer: 2,
+    explanation: "<small> reduces size for side comments and disclaimers."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Easy",
+    topic: "Horizontal Rule",
+    question: "What does <hr> represent in HTML5?",
+    options: ["A simple line","Page break","Thematic break in content","Underline"],
+    answer: 2,
+    explanation: "<hr> is a semantic thematic break, not decoration."
+  },
+
+  // ========== UNIT II – Lists, Media, Tables, Forms (20 questions) ==========
+  {
+    unit: "Unit II",
+    difficulty: "Easy",
+    topic: "Unordered List",
+    question: "Which tag defines a bulleted list?",
+    options: ["<ol>","<ul>","<dl>","<menu>"],
+    answer: 1,
+    explanation: "<ul> creates unordered bullet lists."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Easy",
+    topic: "List Items",
+    question: "Which tag represents each item inside a list?",
+    options: ["<li>","<item>","<dt>","<dd>"],
+    answer: 0,
+    explanation: "<li> is used inside <ol> and <ul>."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Definition List",
+    question: "Which tags represent term and description in a definition list?",
+    options: ["<ol> and <ul>","<dt> and <dd>","<li> and <dl>","<tr> and <td>"],
+    answer: 1,
+    explanation: "<dt> is term, <dd> is description."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Easy",
+    topic: "Hyperlinks",
+    question: "Which attribute defines link destination in <a>?",
+    options: ["src","href","link","jump"],
+    answer: 1,
+    explanation: "href = Hyperlink reference."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Relative URL",
+    question: "Which is a relative URL?",
+    options: ["https://google.com","/images/logo.png","http://example.com/page","ftp://files.com"],
+    answer: 1,
+    explanation: "Relative URLs don’t contain hostname."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Image Attributes",
+    question: "Which attributes are required for proper accessibility?",
+    options: ["width & height","src & alt","title & href","style & name"],
+    answer: 1,
+    explanation: "alt describes image for visually impaired & failed loads."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Audio",
+    question: "Which tag plays audio with controls?",
+    options: ["<sound>","<audio controls>","<media>","<music>"],
+    answer: 1,
+    explanation: "<audio controls> enables playback UI."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Video",
+    question: "Which attribute displays play/pause buttons?",
+    options: ["player","controls","toolbar","ui"],
+    answer: 1,
+    explanation: "controls adds UI buttons."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Table Basics",
+    question: "Minimum elements required to show data?",
+    options: ["<table>, <row>, <data>","<table>, <tr>, <td>","<table>, <th>, <td>","<table>, <td>"],
+    answer: 1,
+    explanation: "<table> holds rows <tr> which hold cells <td>."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Table Header",
+    question: "Which tag creates header cell?",
+    options: ["<th>","<head>","<top>","<td>"],
+    answer: 0,
+    explanation: "<th> defines table headers."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Caption",
+    question: "Where must <caption> be placed?",
+    options: ["Top of <table>","Bottom of <table>","Inside <tfoot>","Inside <tr>"],
+    answer: 0,
+    explanation: "<caption> must be first child."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Easy",
+    topic: "Form",
+    question: "Which element wraps input fields?",
+    options: ["<inputs>","<form>","<group>","<fieldset>"],
+    answer: 1,
+    explanation: "<form> defines submission context."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Form Action",
+    question: "Purpose of action attribute?",
+    options: ["Set method","Set URL receiving form data","Validate form","Refresh page"],
+    answer: 1,
+    explanation: "action sets server URL."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "GET vs POST",
+    question: "Which is TRUE?",
+    options: ["GET hides data","POST appends to URL","GET is bookmarkable","POST works without internet"],
+    answer: 2,
+    explanation: "GET is visible & bookmarkable."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Radio Button",
+    question: "Which input allows only one selection in a group?",
+    options: ["checkbox","radio","select","text"],
+    answer: 1,
+    explanation: "Radio buttons allow only one choice per group name."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Textarea",
+    question: "Which is used for multi-line text?",
+    options: ["<input type='text'>","<textarea>","<text>","<para>"],
+    answer: 1,
+    explanation: "<textarea> collects multi-line data."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Label Accessibility",
+    question: "Best practice for linking label and input?",
+    options: ["Place near each other","Use <label> with for matching input id","Use <span>","Use CSS only"],
+    answer: 1,
+    explanation: "label for=id connects UI + screen readers."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Select Menu",
+    question: "Which tag creates dropdown?",
+    options: ["<options>","<select>","<drop>","<choice>"],
+    answer: 1,
+    explanation: "<select> contains <option> children."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Autocomplete",
+    question: "Which attribute suggests saved values?",
+    options: ["placeholder","autocomplete","required","autofocus"],
+    answer: 1,
+    explanation: "autocomplete uses browser history."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Required",
+    question: "What happens if required input is empty?",
+    options: ["Submit anyway","Block submission with validation message","Auto-fill by browser","Convert to null"],
+    answer: 1,
+    explanation: "required prevents blank submission."
+  },
+
+  // ========== UNIT III – CSS (20 questions) ==========
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Purpose of CSS",
+    question: "CSS is used for what?",
+    options: ["Database","Web styling","Server logic","Image editing"],
+    answer: 1,
+    explanation: "CSS styles HTML."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Inline CSS",
+    question: "Which attribute applies inline CSS?",
+    options: ["class","style","css","format"],
+    answer: 1,
+    explanation: "Inline CSS uses style attribute."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Internal CSS",
+    question: "Internal CSS is written where?",
+    options: ["Inside <style> in <head>","Inside body","Inside footer","Inside <p>"],
+    answer: 0,
+    explanation: "Internal CSS uses <style> in head."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Class Selector",
+    question: "Which selects class='box'?",
+    options: ["box","*box",".box","#box"],
+    answer: 2,
+    explanation: ".classname selects class."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Universal Selector",
+    question: "Which selects all elements?",
+    options: ["body","*","all",":root"],
+    answer: 1,
+    explanation: "* is universal selector."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Descendant Selector",
+    question: "Which selects <em> inside <p>?",
+    options: ["p + em","p > em","p em","em p"],
+    answer: 2,
+    explanation: "p em selects all descendant em."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Margin vs Padding",
+    question: "Padding vs Margin?",
+    options: ["Margin inside, padding outside","Padding inside, margin outside","Both same","Padding only for text"],
+    answer: 1,
+    explanation: "Padding is inside border."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Box Width",
+    question: "Width applies to?",
+    options: ["Content only","Content + Padding","All including margin","Border only"],
+    answer: 0,
+    explanation: "Default width is content-box."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "box-sizing",
+    question: "Which includes padding & border inside width?",
+    options: ["content-box","border-box","full-box","flex-box"],
+    answer: 1,
+    explanation: "border-box includes border + padding."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Typography",
+    question: "Which controls typography?",
+    options: ["font-family, font-size, line-height","border, color","position, display","z-index, overflow"],
+    answer: 0,
+    explanation: "Typography includes font-family, size, line-height."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Remove Underline",
+    question: "How to remove link underline?",
+    options: ["text-decoration: none;","remove-underline: true;","font-style: normal;","underline: 0;"],
+    answer: 0,
+    explanation: "text-decoration removes underline."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Background Color",
+    question: "Which sets background color?",
+    options: ["color","bg","background-color","bg-color"],
+    answer: 2,
+    explanation: "background-color sets fill color."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Hover",
+    question: "Which applies when mouse is over button?",
+    options: ["button:active","button:hover","button:focus","button:visited"],
+    answer: 1,
+    explanation: ":hover applies on mouseover."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Specificity",
+    question: "Which has highest specificity?",
+    options: ["p.intro","#main .box",".card h2","p span"],
+    answer: 1,
+    explanation: "ID selector (#main) highest."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Display Block",
+    question: "Which forces new line?",
+    options: ["inline","block","flex","inline-block"],
+    answer: 1,
+    explanation: "block starts new line."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Inline-block",
+    question: "Which allows width + inline flow?",
+    options: ["block","inline-block","table","none"],
+    answer: 1,
+    explanation: "inline-block combines both behaviors."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Table Style",
+    question: "Which collapses borders?",
+    options: ["border-collapse: collapse;","border-spacing: 0;","table-layout: fixed;","display: table;"],
+    answer: 0,
+    explanation: "border-collapse merges borders."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Overflow",
+    question: "Which handles extra content?",
+    options: ["position","overflow","z-index","float"],
+    answer: 1,
+    explanation: "overflow controls scroll/hidden/visible."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Form Input Styling",
+    question: "Which styles all text inputs inside form?",
+    options: ["input-text","form input[type='text']",".text-input","input-textbox"],
+    answer: 1,
+    explanation: "CSS attribute selectors select group elements."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "External CSS",
+    question: "Correct way to link external CSS?",
+    options: ["<link src='style.css'>","<link rel='stylesheet' href='style.css'>","<style src='style.css'></style>","<link>style.css</link>"],
+    answer: 1,
+    explanation: "<link rel='stylesheet' href='style.css'> correct."
+  },
+
+  // ========== UNIT IV – JavaScript (20 questions) ==========
+  {
+    unit: "Unit IV",
+    difficulty: "Easy",
+    topic: "Use",
+    question: "Which language adds dynamic behavior?",
+    options: ["HTML","CSS","JavaScript","SQL"],
+    answer: 2,
+    explanation: "JavaScript adds interactivity."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Easy",
+    topic: "Script Placement",
+    question: "Why place <script> before </body>?",
+    options: ["Prevent loading","Improve page rendering","Disable JS","Increase CPU usage"],
+    answer: 1,
+    explanation: "HTML loads first, improving speed."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Easy",
+    topic: "Variable",
+    question: "Which declares block scoped variable?",
+    options: ["var","let","const","define"],
+    answer: 1,
+    explanation: "let is block scoped."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Easy",
+    topic: "Constant",
+    question: "Which cannot be reassigned?",
+    options: ["let","const","var","fixed"],
+    answer: 1,
+    explanation: "const can't be reassigned."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "If Syntax",
+    question: "Correct if syntax?",
+    options: ["if x > 5 then {}","if (x > 5) {}","if x > 5 {}","if(x > 5); {}"],
+    answer: 1,
+    explanation: "JS uses if (condition) {}"
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Switch",
+    question: "Which handles many constant conditions?",
+    options: ["if","while","switch","for"],
+    answer: 2,
+    explanation: "switch handles many cases."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "While Loop",
+    question: "When does while check condition?",
+    options: ["After execution","Before each iteration","Only at start","Never"],
+    answer: 1,
+    explanation: "while checks before execution."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "do...while",
+    question: "Which runs at least once?",
+    options: ["for","while","do...while","foreach"],
+    answer: 2,
+    explanation: "do...while executes then checks."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "== vs ===",
+    question: "What is (3 == '3')?",
+    options: ["true","false","error","NaN"],
+    answer: 0,
+    explanation: "== compares values and converts types."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Strict Compare",
+    question: "What is (3 === '3')?",
+    options: ["true","false","undefined","NaN"],
+    answer: 1,
+    explanation: "=== compares type + value."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Logical AND",
+    question: "Which returns true only if both are true?",
+    options: ["||","&&","!","&"],
+    answer: 1,
+    explanation: "&& is logical AND."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Prompt",
+    question: "Which accepts text input?",
+    options: ["alert()","prompt()","confirm()","input()"],
+    answer: 1,
+    explanation: "prompt() asks user for text."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Confirm",
+    question: "confirm('Exit?') returns?",
+    options: ["String","Boolean","Number","Null"],
+    answer: 1,
+    explanation: "confirm returns true/false."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Object",
+    question: "Correct object syntax?",
+    options: ["const x = name:'a';","const x = {name:'a'};","const x(name='a');","let x = object(a);"],
+    answer: 1,
+    explanation: "Object literal uses { }."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Property Access",
+    question: "car = {brand:'Tata'} how to read brand?",
+    options: ["car->brand","car['brand']","car.brand","brand(car)"],
+    answer: 2,
+    explanation: "Dot notation is simplest."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Arrays",
+    question: "Which loop reads values in array?",
+    options: ["for...in","for...of","while","switch"],
+    answer: 1,
+    explanation: "for...of iterates values."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Hoisting",
+    question: "Which is hoisted with undefined?",
+    options: ["let","const","var","None"],
+    answer: 2,
+    explanation: "var is hoisted and set undefined."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Scope",
+    question: "Where is var available inside function?",
+    options: ["Global","Only inside function","Only inside block","Nowhere"],
+    answer: 1,
+    explanation: "var is function scoped."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Array",
+    question: "Correct array syntax?",
+    options: ["const a = (1,2)","const a = [1,2]","const a = {1,2}","array(1,2)"],
+    answer: 1,
+    explanation: "Arrays use [ ]."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Array Length",
+    question: "If arr=['a','b'], arr.length = ?",
+    options: ["0","1","2","3"],
+    answer: 2,
+    explanation: "Length equals number of items."
+  },
+    // ---------- EXTRA HTML QUESTIONS (UNIT I & II) ----------
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Semantic Tags",
+    question: "Which tag is best suited for marking important navigation links in HTML5?",
+    options: ["<menu>", "<section>", "<nav>", "<aside>"],
+    answer: 2,
+    explanation: "<nav> semantically represents primary navigation links for a webpage."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "SEO",
+    question: "Which tag helps search engines understand the summary of the webpage?",
+    options: ["<meta name='robots'>", "<meta name='viewport'>", "<meta name='description'>", "<meta charset='UTF-8'>"],
+    answer: 2,
+    explanation: "Meta description affects how your site appears in search results."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Accessibility",
+    question: "Which attribute should be used with <img> for visually impaired users?",
+    options: ["title", "alt", "src", "type"],
+    answer: 1,
+    explanation: "alt provides meaningful description for screen readers."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Accessibility",
+    question: "What is the purpose of ARIA attributes in HTML?",
+    options: ["To animate text", "To improve accessibility", "To speed up loading", "To validate forms"],
+    answer: 1,
+    explanation: "ARIA attributes describe element roles and help screen readers interpret UI components."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Forms",
+    question: "Which attribute prevents a form from submitting without filling a required field?",
+    options: ["mandatory", "required", "check", "validate"],
+    answer: 1,
+    explanation: "required adds built-in browser validation."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Forms",
+    question: "Which input type is appropriate for choosing a date?",
+    options: ["text", "time", "date", "datetime-local"],
+    answer: 2,
+    explanation: "<input type='date'> opens a calendar UI."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Forms",
+    question: "Which HTML attribute defines where the HTTP request will be sent?",
+    options: ["method", "action", "enctype", "target"],
+    answer: 1,
+    explanation: "action defines the endpoint receiving the form data."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Forms Security",
+    question: "Why is POST safer than GET?",
+    options: ["It uses encryption always", "It does not append data to URL", "It is slower", "It blocks hacking"],
+    answer: 1,
+    explanation: "POST hides data from visible URL, although it is not encrypted unless HTTPS is used."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Tables",
+    question: "Which tag groups header, body, and footer rows separately?",
+    options: ["<table-group>", "<rule>", "<thead>, <tbody>, <tfoot>", "<content>"],
+    answer: 2,
+    explanation: "These elements help organize and style table sections."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Media",
+    question: "Which attribute allows video to play without user interaction?",
+    options: ["autoplay", "controls", "muted", "loop"],
+    answer: 0,
+    explanation: "autoplay starts the media automatically."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Media Policy",
+    question: "Why does some browser block autoplay videos unless muted?",
+    options: ["Memory issues", "Performance optimization", "User experience and policy restrictions", "HTML errors"],
+    answer: 2,
+    explanation: "Browsers block audio autoplay to avoid disturbance unless muted."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Lists",
+    question: "Which attribute changes numbering style in an ordered list?",
+    options: ["symbol", "list-type", "type", "style-type"],
+    answer: 2,
+    explanation: "<ol type='A'> or 'i' changes numbering style."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Easy",
+    topic: "Hyperlinks",
+    question: "Which attribute forces file download on clicking a link?",
+    options: ["download", "save", "store", "target='_download'"],
+    answer: 0,
+    explanation: "download prompts saving instead of opening the file."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Image Formats",
+    question: "Which image format supports animations?",
+    options: ["PNG", "JPG", "GIF", "WEBP"],
+    answer: 2,
+    explanation: "GIF supports animation frames natively."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Input Types",
+    question: "Which input type is best for entering email?",
+    options: ["text", "search", "email", "id"],
+    answer: 2,
+    explanation: "email input validates correct email format."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Placeholder",
+    question: "Which attribute displays hint text inside text inputs?",
+    options: ["hint", "placeholder", "label", "value"],
+    answer: 1,
+    explanation: "placeholder offers guidance before text entry."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Form Encoding",
+    question: "Which enctype must be used to upload images/files?",
+    options: ["text/plain", "multipart/form-data", "application/json", "urlencode"],
+    answer: 1,
+    explanation: "multipart/form-data sends binary files safely."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Favicon",
+    question: "Which HTML element is used to add favicon?",
+    options: ["<meta>", "<icon>", "<link>", "<fav>"],
+    answer: 2,
+    explanation: "Favicon uses <link rel='icon' href='...'>"
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Code Tag",
+    question: "Which HTML element is used to represent short inline code snippet?",
+    options: ["<kbd>", "<code>", "<var>", "<mark>"],
+    answer: 1,
+    explanation: "<code> semantically defines code text."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Keyboard Input",
+    question: "Which tag represents text the user should enter via keyboard?",
+    options: ["<var>", "<kbd>", "<samp>", "<mark>"],
+    answer: 1,
+    explanation: "<kbd> is used for keyboard input representation."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Quotation Blocks",
+    question: "Which tag represents a long quotation block (multi-line)?",
+    options: ["<q>", "<cite>", "<blockquote>", "<abbr>"],
+    answer: 2,
+    explanation: "<blockquote> defines multi-line quoted text."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Forms Validation",
+    question: "Which attribute limits number of typed characters?",
+    options: ["maxlength", "limit", "size", "count"],
+    answer: 0,
+    explanation: "maxlength controls number of characters allowed."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Forms UX",
+    question: "Which attribute should you add to automatically focus on an input field when page loads?",
+    options: ["focus-onstart", "autofocus", "active", "onload"],
+    answer: 1,
+    explanation: "autofocus auto-positions cursor."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Steps",
+    question: "Which attribute is useful in numeric inputs like price where decimal step needed?",
+    options: ["decimal", "float", "step", "factor"],
+    answer: 2,
+    explanation: "step allows decimals like step='0.01'."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Cross Origin",
+    question: "Which attribute is required to allow media resources from another website?",
+    options: ["crossorigin", "external", "open", "allow"],
+    answer: 0,
+    explanation: "crossorigin attribute controls CORS policies."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "SVG",
+    question: "Which HTML element supports scalable vector shapes?",
+    options: ["<canvas>", "<svg>", "<vector>", "<draw>"],
+    answer: 1,
+    explanation: "<svg> supports resolution-independent shapes and animations."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Canvas",
+    question: "Which attribute sets drawing size for <canvas>?",
+    options: ["resolution", "size", "width and height", "pixel"],
+    answer: 2,
+    explanation: "<canvas> requires width/height attributes."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Shadow DOM",
+    question: "Which concept isolates CSS and JS inside Web Components?",
+    options: ["Virtual DOM", "Shadow DOM", "Logical DOM", "Native DOM"],
+    answer: 1,
+    explanation: "Shadow DOM encapsulates styling and scripting inside components."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Anchor Target",
+    question: "target='_blank' should be combined with which attribute for security?",
+    options: ["rel='noopener noreferrer'", "rel='safe'", "rel='external'", "rel='crossdomain'"],
+    answer: 0,
+    explanation: "noopener noreferrer prevents tab hijacking."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Hidden",
+    question: "What does hidden attribute do?",
+    options: ["Removes element", "Makes invisible but occupies no space", "Makes visible on hover", "Encrypts data"],
+    answer: 1,
+    explanation: "hidden hides element fully without layout involvement."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Iframe",
+    question: "Which attribute restricts features of iframe for security?",
+    options: ["safe", "sandbox", "protect", "allow"],
+    answer: 1,
+    explanation: "sandbox locks iframe permissions."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Character Encoding",
+    question: "If charset is not specified, what may happen?",
+    options: ["Images break", "Fonts may not load", "Special characters render incorrectly", "CSS won't work"],
+    answer: 2,
+    explanation: "Without UTF-8 special characters render incorrectly."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Pattern Validation",
+    question: "Which attribute allows regex based input validation?",
+    options: ["validate", "pattern", "regex", "rule"],
+    answer: 1,
+    explanation: "pattern='[A-Z]{3}' applies regex validation."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Loading Attributes",
+    question: "Which attribute delays image loading for performance?",
+    options: ["async", "loading='lazy'", "slow-load", "cache"],
+    answer: 1,
+    explanation: "lazy loading delays loading until element is visible."
+  },  {
+    unit: "Unit I",
+    difficulty: "Medium",
+    topic: "Doctype",
+    question: "Which of the following is the correct HTML5 doctype?",
+    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<DOCTYPE html5>", "<doctype html>"],
+    answer: 1,
+    explanation: "<!DOCTYPE html> is the correct and simplest HTML5 doctype declaration."
+  },
+  {
+    unit: "Unit I",
+    difficulty: "Hard",
+    topic: "Script Loading",
+    question: "Which attribute allows external JavaScript to load without blocking HTML parsing?",
+    options: ["async", "defer", "delay", "non-block"],
+    answer: 1,
+    explanation: "defer loads JS in parallel but executes after HTML parsing completes."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Forms UX",
+    question: "Which attribute suggests an option list for an input using <datalist>?",
+    options: ["list", "options", "data", "choice"],
+    answer: 0,
+    explanation: "list attribute links <input> to <datalist> to show suggested values."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Security",
+    question: "Why should sensitive data (passwords) never be submitted via GET?",
+    options: ["GET is slower", "GET stores data in URL history", "GET doesn’t submit data", "GET corrupts encrypted data"],
+    answer: 1,
+    explanation: "GET appends data in URL and Browser History making passwords visible."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Input Types",
+    question: "Which type is best for selecting month and year?",
+    options: ["date", "month", "time", "week"],
+    answer: 1,
+    explanation: "<input type='month'> lets users pick a month and year without selecting a day."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Medium",
+    topic: "Tables",
+    question: "Which element provides a brief explanation or title for a table?",
+    options: ["<header>", "<legend>", "<caption>", "<title>"],
+    answer: 2,
+    explanation: "<caption> provides a title/summary for a table and improves accessibility."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Forms Encoding",
+    question: "Which encoding type sends data in URL-encoded format (default in forms)?",
+    options: ["multipart/form-data", "application/json", "text/plain", "application/x-www-form-urlencoded"],
+    answer: 3,
+    explanation: "application/x-www-form-urlencoded is the default encoding for form submission."
+  },
+  {
+    unit: "Unit II",
+    difficulty: "Hard",
+    topic: "Media Optimization",
+    question: "Which attribute provides different image files based on screen width and pixel density?",
+    options: ["srcset", "responsive", "scalable", "resolution"],
+    answer: 0,
+    explanation: "srcset allows responsive image versions for different screen sizes and devices."
+  },  // ---------- EXTRA CSS QUESTIONS (UNIT III) ----------
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Selectors",
+    question: "Which selector targets all elements with class='btn'?",
+    options: ["#btn", ".btn", "btn", "*btn"],
+    answer: 1,
+    explanation: "Class selector uses dot notation (.classname)."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Selectors",
+    question: "Which selector will style only <p> elements inside div?",
+    options: ["div > p", "p div", "div+p", "p > div"],
+    answer: 0,
+    explanation: "div > p selects only direct child paragraphs."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Selectors",
+    question: "Which selector targets <a> elements that have NOT been visited yet?",
+    options: ["a:link", "a:hover", "a:active", "a:visited"],
+    answer: 0,
+    explanation: "a:link applies to unvisited links."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Pseudo-classes",
+    question: "Which pseudo-class applies when an input gains cursor focus?",
+    options: [":hover", ":focus", ":active", ":visited"],
+    answer: 1,
+    explanation: ":focus applies when input is selected/clicked."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Pseudo-Elements",
+    question: "Which pseudo-element adds content before an element?",
+    options: ["::post", "::before", "::after", "::first-line"],
+    answer: 1,
+    explanation: "::before inserts generated content before the element."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Inheritance",
+    question: "Which CSS property cannot be inherited?",
+    options: ["color", "font-size", "margin", "line-height"],
+    answer: 2,
+    explanation: "Margin is not inherited because it affects spacing."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Box Model",
+    question: "Which is NOT part of the CSS box model?",
+    options: ["content", "padding", "margin", "shadow"],
+    answer: 3,
+    explanation: "Shadow is visual effect but not part of box model."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Box Model",
+    question: "Which property alters default box model to include padding & border inside width?",
+    options: ["box", "box-size", "box-sizing: border-box", "box-width"],
+    answer: 2,
+    explanation: "border-box includes border and padding inside the set width."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Display",
+    question: "Which display type makes elements flow horizontally and control width/height?",
+    options: ["inline", "inline-block", "block", "inherit"],
+    answer: 1,
+    explanation: "inline-block allows horizontal flow + block styling."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Positioning",
+    question: "Which positioning type keeps element fixed relative to browser window?",
+    options: ["relative", "absolute", "fixed", "static"],
+    answer: 2,
+    explanation: "fixed locks element position during scroll."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Positioning",
+    question: "Which property controls stacking order of overlapping elements?",
+    options: ["z-order", "z-index", "stack", "order"],
+    answer: 1,
+    explanation: "z-index controls stacking order."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Positioning",
+    question: "Absolute positioned elements are positioned relative to which ancestor?",
+    options: ["Browser window", "Nearest positioned ancestor", "HTML root", "Nearest block tag"],
+    answer: 1,
+    explanation: "Absolute uses nearest non-static ancestor."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Flexbox",
+    question: "Which property makes an element a flexible container?",
+    options: ["flex-box: on", "display: flex", "flex: container", "layout: flex"],
+    answer: 1,
+    explanation: "display: flex enables flexbox layout."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Flexbox",
+    question: "Which property aligns items along the main axis?",
+    options: ["justify-content", "align-content", "align-items", "flex-end"],
+    answer: 0,
+    explanation: "justify-content aligns along main axis."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Flexbox",
+    question: "Which property aligns flex items vertically (cross axis)?",
+    options: ["justify-content", "align-items", "align-content", "gap"],
+    answer: 1,
+    explanation: "align-items positions perpendicular to main axis."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Flexbox",
+    question: "Which flex property grows items to fill leftover space?",
+    options: ["flex-wrap", "flex-grow", "flex-flow", "flex-shrink"],
+    answer: 1,
+    explanation: "flex-grow assigns free space distribution."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Grid",
+    question: "Which enables the CSS Grid layout?",
+    options: ["display: grid", "display: flex-grid", "grid: on", "layout: grid"],
+    answer: 0,
+    explanation: "display: grid activates grid container."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Grid",
+    question: "Which property defines number and width of columns in CSS Grid?",
+    options: ["grid-auto-flow", "grid-template-rows", "grid-template-columns", "grid-column-gap"],
+    answer: 2,
+    explanation: "grid-template-columns defines column structure."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Grid",
+    question: "Which unit automatically adjusts to available space?",
+    options: ["px", "em", "fr", "%"],
+    answer: 2,
+    explanation: "fr (fraction) divides free space proportionally."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Typography",
+    question: "Which CSS property increases spacing between letters?",
+    options: ["word-spacing", "letter-spacing", "line-height", "text-indent"],
+    answer: 1,
+    explanation: "letter-spacing controls spacing between characters."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Fonts",
+    question: "Which is a system font example?",
+    options: ["Arial", "Roboto", "Lato", "Poppins"],
+    answer: 0,
+    explanation: "Arial is a system font."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Fonts",
+    question: "Which unit is relative to the root <html> font size?",
+    options: ["px", "em", "rem", "%"],
+    answer: 2,
+    explanation: "rem is relative to root font size, not parent."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Color",
+    question: "Which color format includes transparency?",
+    options: ["rgb()", "hex", "rgba()", "name"],
+    answer: 2,
+    explanation: "rgba adds alpha for transparency."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Color",
+    question: "What does hsl(120, 100%, 50%) represent?",
+    options: ["Red shade", "Green shade", "Blue shade", "Yellow shade"],
+    answer: 1,
+    explanation: "Hue 120° corresponds to green in HSL."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Background",
+    question: "Which property ensures background image fills entire container?",
+    options: ["background-repeat: repeat;", "background-size: contain;", "background-size: cover;", "background-fill: full;"],
+    answer: 2,
+    explanation: "cover scales image to full area."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Shadows",
+    question: "Which property creates a box shadow?",
+    options: ["shadow-box", "box-shadow", "shadow", "border-shadow"],
+    answer: 1,
+    explanation: "box-shadow applies outer shadow effects."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Animations",
+    question: "Which CSS rule defines keyframes for animation?",
+    options: ["@frames", "@keyframes", "animation-frames", "@motion"],
+    answer: 1,
+    explanation: "@keyframes defines animation steps."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Animation",
+    question: "Which property controls animation duration?",
+    options: ["animation-speed", "animation-duration", "duration", "transition-time"],
+    answer: 1,
+    explanation: "animation-duration sets how long animation runs."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Transitions",
+    question: "Which property smoothly changes styles over time?",
+    options: ["transform", "transition", "animation", "filter"],
+    answer: 1,
+    explanation: "transition makes style changes smooth."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Transition",
+    question: "Which applies transition to all properties?",
+    options: ["transition: *", "transition: all", "transition: every", "transition: any"],
+    answer: 1,
+    explanation: "transition: all applies to all animatable properties."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Filter",
+    question: "Which CSS filter makes an image grayscale?",
+    options: ["filter: gray(100%)", "filter: greyscale(1)", "filter: grayscale(100%)", "filter: desaturate()"],
+    answer: 2,
+    explanation: "filter: grayscale(100%) removes all color."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Hard",
+    topic: "Table Styling",
+    question: "Which property removes gaps between collapsed table borders?",
+    options: ["border-spacing: none;", "border-collapse: collapse;", "border-spacing: 0;", "table-collapse: hide;"],
+    answer: 2,
+    explanation: "border-spacing:0 removes space when using collapse."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Cursor",
+    question: "Which value changes cursor to a hand pointer on hover?",
+    options: ["cursor: text;", "cursor: default;", "cursor: pointer;", "cursor: icon;"],
+    answer: 2,
+    explanation: "cursor: pointer is used for clickable elements."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Easy",
+    topic: "Text",
+    question: "Which property controls whether text flows to a new line?",
+    options: ["white-space", "text-flow", "wrap", "overflow"],
+    answer: 0,
+    explanation: "white-space controls text wrapping behavior."
+  },
+  {
+    unit: "Unit III",
+    difficulty: "Medium",
+    topic: "Overflow",
+    question: "Which value of overflow shows scrollbars only when needed?",
+    options: ["hidden", "scroll", "auto", "visible"],
+    answer: 2,
+    explanation: "overflow:auto adds scroll only when content overflows."
+  },
+    // ---------- EXTRA JAVASCRIPT QUESTIONS (UNIT IV) ----------
+  {
+    unit: "Unit IV",
+    difficulty: "Easy",
+    topic: "Datatypes",
+    question: "What is the type of NaN in JavaScript?",
+    options: ["Number", "String", "Undefined", "Object"],
+    answer: 0,
+    explanation: "NaN stands for Not-a-Number but its type is Number."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Operators",
+    question: "What is the result of typeof null?",
+    options: ["null", "object", "undefined", "number"],
+    answer: 1,
+    explanation: "typeof null is a bug in JS that returns object."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Functions",
+    question: "How do you define a function in JavaScript?",
+    options: ["fun myFunc()", "function myFunc()", "method myFunc()", "procedure myFunc()"],
+    answer: 1,
+    explanation: "function keyword is used to define functions in JavaScript."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Default Parameter",
+    question: "How to assign a default parameter?",
+    options: ["function test(x=10)", "function test(x==10)", "function test(x:10)", "function test(x=>10)"],
+    answer: 0,
+    explanation: "Default parameters use assignment inside parentheses."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Closures",
+    question: "What is a closure?",
+    options: [
+      "Function with no return", 
+      "Function inside a class",
+      "Function with access to outer scope variables",
+      "Function without parameters"
+    ],
+    answer: 2,
+    explanation: "Closures allow inner functions to access variables outside their scope."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Hoisting",
+    question: "Which variables are hoisted with undefined?",
+    options: ["let and const", "var only", "None", "const only"],
+    answer: 1,
+    explanation: "var is hoisted and initialized with undefined."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Hoisting",
+    question: "What happens when accessing a let variable before declaration?",
+    options: ["Returns undefined", "Error: Cannot access before initialization", "Returns null", "Works normally"],
+    answer: 1,
+    explanation: "let is hoisted but in temporal dead zone, causing error when accessed early."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Scope",
+    question: "Which variable type is block scoped?",
+    options: ["var", "let", "function", "typeof"],
+    answer: 1,
+    explanation: "let is block scoped while var is function scoped."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Arrays",
+    question: "Which method adds an element at the end of an array?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    answer: 0,
+    explanation: "push() adds element at the end."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Arrays",
+    question: "Which method removes the last element of an array?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    answer: 1,
+    explanation: "pop() removes element from end."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Arrays",
+    question: "Which method creates a new array without changing original?",
+    options: ["splice()", "slice()", "push()", "sort()"],
+    answer: 1,
+    explanation: "slice() returns a copy of array portion, not modifying original."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Array Mapping",
+    question: "What is returned by [1,2,3].map(x => x*2)?",
+    options: ["1,2,3", "[1,2,3]", "[2,4,6]", "undefined"],
+    answer: 2,
+    explanation: "map returns a new array with each element multiplied by 2."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "JSON",
+    question: "What does JSON.stringify() do?",
+    options: ["Converts string to object", "Converts object to JSON string", "Parses JSON to array", "Stores data in browser"],
+    answer: 1,
+    explanation: "JSON.stringify() converts objects to JSON string."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Parsing",
+    question: "What does JSON.parse() do?",
+    options: ["Converts string to object", "Converts object to JSON string", "Converts array to object", "Creates functions"],
+    answer: 0,
+    explanation: "JSON.parse() converts JSON string to object."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "DOM",
+    question: "Which method selects an element by ID?",
+    options: ["getElementById()", "querySelectorAll()", "getElement()", "getId()"],
+    answer: 0,
+    explanation: "getElementById targets single element based on ID."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "DOM",
+    question: "Which returns the first matching CSS selector?",
+    options: ["querySelector()", "querySelectorAll()", "getElementByClass()", "getTag()"],
+    answer: 0,
+    explanation: "querySelector returns the first match only."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "DOM",
+    question: "Which adds new HTML into element without replacing existing content?",
+    options: ["innerHTML=", "innerText=", "textContent=", "insertAdjacentHTML()"],
+    answer: 3,
+    explanation: "insertAdjacentHTML inserts HTML at desired position without overwrite."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Events",
+    question: "Which event occurs when user presses a key?",
+    options: ["onpress", "keydown", "keyup", "keypress"],
+    answer: 1,
+    explanation: "keydown triggers immediately when a key is pressed."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Events",
+    question: "Which event fires when text changes and input loses focus?",
+    options: ["keyup", "keydown", "change", "blur"],
+    answer: 2,
+    explanation: "change triggers when value is changed and input is unfocused."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Timers",
+    question: "Which function runs code repeatedly at intervals?",
+    options: ["setTimeout()", "setInterval()", "loop()", "interval()"],
+    answer: 1,
+    explanation: "setInterval repeatedly executes function until stopped."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Timers",
+    question: "Which function runs code only once after delay?",
+    options: ["setTimeout()", "setInterval()", "delay()", "loopOnce()"],
+    answer: 0,
+    explanation: "setTimeout runs a function after a delay only once."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Truthy / Falsy",
+    question: "Which of the following is NOT falsy?",
+    options: ["0", "null", "undefined", "'false'"],
+    answer: 3,
+    explanation: "'false' is a non-empty string; any non-empty string is truthy."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Equality",
+    question: "Which is TRUE about (0 == '0')?",
+    options: ["false", "true", "NaN", "undefined"],
+    answer: 1,
+    explanation: "== performs type coercion, so values are equal."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Loop",
+    question: "What is output of: for(let i=0;i<3;i++){console.log(i);}?",
+    options: ["1 2 3", "0 1 2", "0 1 2 3", "Error"],
+    answer: 1,
+    explanation: "Loop prints 0,1,2 since condition stops before 3."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Spread Operator",
+    question: "Which spreads array elements into arguments?",
+    options: ["spread()", "...", "args()", "*"],
+    answer: 1,
+    explanation: "... (spread) expands array into individual elements."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Rest Operator",
+    question: "Which collects multiple arguments into a single array?",
+    options: ["...", "args()", "*", "rest()"],
+    answer: 0,
+    explanation: "The same operator ... is called rest when used to collect values."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Function Return",
+    question: "What is returned by console.log(typeof function(){})?",
+    options: ["object", "function", "method", "undefined"],
+    answer: 1,
+    explanation: "Functions are a separate type called 'function'."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Arrow Function",
+    question: "Which is a valid arrow function?",
+    options: ["(x,y)=>return x+y", "(x,y)=>{x+y}", "(x,y)=>x+y", "(x,y)=>(x,y)"],
+    answer: 2,
+    explanation: "Arrow function implicitly returns expression without braces."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "DOM Manipulation",
+    question: "What does document.createElement('p') do?",
+    options: ["Creates new <p> and adds to DOM", "Creates element but not in DOM yet", "Styling element", "Deletes element"],
+    answer: 1,
+    explanation: "It creates an element object but must be appended using appendChild()."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Event Bubble",
+    question: "Which event phase receives events from child to parent?",
+    options: ["Capturing", "Bubbling", "Dispatching", "Invoking"],
+    answer: 1,
+    explanation: "Event bubbling propagates from target to outer ancestors."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Binding",
+    question: "What does .bind() do in JavaScript?",
+    options: ["Bind arrays", "Bind CSS", "Sets this value for a function", "Binds variables"],
+    answer: 2,
+    explanation: ".bind() sets the 'this' context of a function and returns a new function."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Strict Mode",
+    question: "What does 'use strict' do?",
+    options: ["Makes code faster", "Prevents silent errors", "Stops loops", "Disables JS"],
+    answer: 1,
+    explanation: "'use strict' disallows unsafe practices and throws errors."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Date Object",
+    question: "Which creates a new Date object?",
+    options: ["new Date()", "Date.create()", "create Date()", "date.new()"],
+    answer: 0,
+    explanation: "new Date() creates current date-time object."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Prototype",
+    question: "Almost everything in JavaScript is based on?",
+    options: ["Classes", "Modules", "Prototype", "Blueprint"],
+    answer: 2,
+    explanation: "JavaScript uses prototypal inheritance instead of classical inheritance."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Local Storage",
+    question: "Which stores data permanently in browser?",
+    options: ["sessionStorage", "localStorage", "cookieStorage", "DOM"],
+    answer: 1,
+    explanation: "localStorage persists data even after tab close."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Medium",
+    topic: "Session Storage",
+    question: "Which storage is cleared when browser/tab closes?",
+    options: ["localStorage", "sessionStorage", "cookieStorage", "tempStorage"],
+    answer: 1,
+    explanation: "sessionStorage exists only per browser tab."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Set",
+    question: "Which collection stores only unique values?",
+    options: ["Array", "Object", "Set", "Map"],
+    answer: 2,
+    explanation: "Set removes duplicates automatically."
+  },
+  {
+    unit: "Unit IV",
+    difficulty: "Hard",
+    topic: "Map",
+    question: "Which stores key-value pairs and keys can be any type?",
+    options: ["Object", "Map", "JSON", "Array"],
+    answer: 1,
+    explanation: "Map allows keys of any type, unlike objects which use strings."
+  }
+];
+
+
+  // If you forget to paste:
+  if (questions.length === 0) {
+    console.warn("No questions loaded. Paste your questions array into the script.");
+  }
+
+  // ================== STATE ==================
+  const state = questions.map(() => ({
+    answered: false,
+    isCorrect: false,
+    selectedIndex: null
+  }));
+
+  let currentIndex = 0;
+  let correctCount = 0;
+  let wrongCount = 0;
+  let attemptedCount = 0;
+
+  // ================== DOM ==================
+  const qNav = document.getElementById("q-nav");
+  const questionBox = document.getElementById("question-box");
+  const questionText = document.getElementById("question-text");
+  const unitLabel = document.getElementById("unit-label");
+  const levelLabel = document.getElementById("level-label");
+  const optionsList = document.getElementById("options-list");
+  const feedback = document.getElementById("feedback");
+  const explanation = document.getElementById("explanation");
+  const metaInfo = document.getElementById("meta-info");
+
+  const scoreText = document.getElementById("score-text");
+  const correctText = document.getElementById("correct-count");
+  const wrongText = document.getElementById("wrong-count");
+  const attemptedText = document.getElementById("attempted-count");
+
+  const btnCheck = document.getElementById("btn-check");
+  const btnNext = document.getElementById("btn-next");
+  const btnPrev = document.getElementById("btn-prev");
+  const btnReset = document.getElementById("btn-reset");
+  const btnExport = document.getElementById("btn-export");
+  const themeSelect = document.getElementById("theme-select");
+
+  // ================== THEME ==================
+  themeSelect.addEventListener("change", () => {
+    document.body.setAttribute("data-theme", themeSelect.value);
+  });
+
+  // ================== RENDER NAV ==================
+  function renderNav() {
+    // Clear old (except title)
+    const oldBtns = Array.from(qNav.querySelectorAll(".q-nav-btn"));
+    oldBtns.forEach(btn => btn.remove());
+
+    state.forEach((s, idx) => {
+      const btn = document.createElement("button");
+      btn.textContent = idx + 1;
+      btn.className = "q-nav-btn";
+
+      if (idx === currentIndex) {
+        btn.classList.add("current");
+      } else if (s.answered && s.isCorrect) {
+        btn.classList.add("correct");
+      } else if (s.answered && !s.isCorrect) {
+        btn.classList.add("wrong");
+      }
+
+      btn.addEventListener("click", () => {
+        currentIndex = idx;
+        renderQuestion();
+      });
+
+      qNav.appendChild(btn);
+    });
+
+    // Auto scroll active into view (for horizontal mode)
+    const currentBtn = qNav.querySelector(".q-nav-btn.current");
+    if (currentBtn) {
+      currentBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }
+
+  // ================== RENDER QUESTION ==================
+  function renderQuestion() {
+    if (questions.length === 0) return;
+
+    const q = questions[currentIndex];
+    const st = state[currentIndex];
+
+    // Restart animation
+    questionBox.classList.remove("fade-restart");
+    void questionBox.offsetWidth;
+    questionBox.classList.add("fade-restart");
+
+    questionText.textContent = `Q${currentIndex + 1}. ${q.question}`;
+    unitLabel.textContent = `Unit: ${q.unit}  |  Topic: ${q.topic}`;
+
+    const diffClass =
+      q.difficulty === "Easy" ? "diff-easy" :
+      q.difficulty === "Medium" ? "diff-medium" :
+      "diff-hard";
+
+    levelLabel.innerHTML =
+      `Difficulty: <span class="difficulty-pill ${diffClass}">${q.difficulty}</span>`;
+
+    metaInfo.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+
+    // Options
+    optionsList.innerHTML = "";
+    q.options.forEach((opt, idx) => {
+      const li = document.createElement("li");
+      li.className = "option-item";
+      const label = document.createElement("label");
+      label.className = "option-label";
+      label.dataset.index = idx;
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "option";
+      input.value = idx;
+      input.className = "option-input";
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(opt));
+      li.appendChild(label);
+      optionsList.appendChild(li);
+    });
+
+    // Feedback reset
+    feedback.textContent = "";
+    feedback.className = "";
+    explanation.textContent = "";
+
+    const radios = document.querySelectorAll("input[name='option']");
+    if (st.answered) {
+      radios.forEach(r => {
+        r.disabled = true;
+        if (parseInt(r.value, 10) === st.selectedIndex) {
+          r.checked = true;
+        }
+      });
+      highlightOptions(currentIndex, st.selectedIndex, q.answer);
+      feedback.textContent = st.isCorrect ? "✅ Correct (locked)" : "❌ Wrong (locked)";
+      feedback.className = st.isCorrect ? "correct" : "wrong";
+      explanation.innerHTML =
+        `<strong>Correct Answer:</strong> ${q.options[q.answer]}<br><br>${q.explanation}`;
+      btnCheck.disabled = true;
+    } else {
+      radios.forEach(r => (r.disabled = false));
+      btnCheck.disabled = false;
+    }
+
+    // Prev/Next disable
+    btnPrev.disabled = currentIndex === 0;
+    btnNext.disabled = currentIndex === questions.length - 1;
+
+    renderNav();
+    updateScore();
+  }
+
+  // Helper: selected option
+  function getSelectedOptionIndex() {
+    const radios = document.querySelectorAll("input[name='option']");
+    for (const r of radios) {
+      if (r.checked) return parseInt(r.value, 10);
+    }
+    return -1;
+  }
+
+  function updateScore() {
+    scoreText.textContent = `Score: ${correctCount} / ${attemptedCount}`;
+    correctText.textContent = `Correct: ${correctCount}`;
+    wrongText.textContent = `Wrong: ${wrongCount}`;
+    attemptedText.textContent = `Attempted: ${attemptedCount}`;
+  }
+
+  function highlightOptions(qIndex, selectedIndex, correctIndex) {
+    const labels = document.querySelectorAll(".option-label");
+    labels.forEach(label => {
+      label.classList.remove("option-correct", "option-wrong");
+    });
+    labels.forEach(label => {
+      const idx = parseInt(label.dataset.index, 10);
+      if (idx === correctIndex) {
+        label.classList.add("option-correct");
+      }
+      if (selectedIndex != null && idx === selectedIndex && selectedIndex !== correctIndex) {
+        label.classList.add("option-wrong");
+      }
+    });
+  }
+
+  // ================== BUTTONS ==================
+  btnCheck.addEventListener("click", () => {
+    if (questions.length === 0) return;
+    const q = questions[currentIndex];
+    const st = state[currentIndex];
+
+    if (st.answered) return;
+
+    const selected = getSelectedOptionIndex();
+    if (selected === -1) {
+      feedback.textContent = "Please select an option first.";
+      feedback.className = "wrong";
+      explanation.textContent = "";
+      return;
+    }
+
+    st.answered = true;
+    st.selectedIndex = selected;
+    st.isCorrect = selected === q.answer;
+
+    attemptedCount++;
+    if (st.isCorrect) {
+      correctCount++;
+      feedback.textContent = "✅ Correct!";
+      feedback.className = "correct";
+    } else {
+      wrongCount++;
+      feedback.textContent = "❌ Wrong.";
+      feedback.className = "wrong";
+    }
+
+    explanation.innerHTML =
+      `<strong>Correct Answer:</strong> ${q.options[q.answer]}<br><br>${q.explanation}`;
+
+    const radios = document.querySelectorAll("input[name='option']");
+    radios.forEach(r => (r.disabled = true));
+    highlightOptions(currentIndex, selected, q.answer);
+    btnCheck.disabled = true;
+
+    updateScore();
+    renderNav();
+  });
+
+  btnNext.addEventListener("click", () => {
+    if (currentIndex < questions.length - 1) {
+      currentIndex++;
+      renderQuestion();
+    }
+  });
+
+  btnPrev.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion();
+    }
+  });
+
+  btnReset.addEventListener("click", () => {
+    if (!confirm("Reset the entire quiz? All answers will be cleared.")) return;
+    for (let i = 0; i < state.length; i++) {
+      state[i].answered = false;
+      state[i].isCorrect = false;
+      state[i].selectedIndex = null;
+    }
+    currentIndex = 0;
+    correctCount = 0;
+    wrongCount = 0;
+    attemptedCount = 0;
+    updateScore();
+    renderQuestion();
+  });
+
+  // ================== EXPORT PDF (NEW TAB) ==================
+  btnExport.addEventListener("click", () => {
+    const answeredIndices = state
+      .map((s, idx) => (s.answered ? idx : -1))
+      .filter(idx => idx !== -1);
+
+    if (answeredIndices.length === 0) {
+      alert("You have not attempted any questions yet.");
+      return;
+    }
+
+    const studentName = "sonu parsad";
+    const today = new Date();
+    const dateStr = today.toLocaleDateString();
+
+    let html = `
+      <html>
+      <head>
+        <title>Web Technologies MCQ Review</title>
+        <style>
+          @page { margin: 18mm; }
+          body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            color: #111827;
+          }
+          h1, h2, h3 { margin: 0 0 8px; }
+          .cover {
+            text-align: center;
+            margin-top: 80px;
+          }
+          .cover h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+            color: #1d4ed8;
+          }
+          .cover h2 {
+            font-size: 18px;
+            margin-bottom: 14px;
+            color: #111827;
+          }
+          .cover p {
+            margin: 4px 0;
+            font-size: 14px;
+          }
+          .page-break { page-break-after: always; }
+          .unit-title {
+            margin-top: 14px;
+            padding: 6px 10px;
+            background: #e0ecff;
+            border-left: 4px solid #2563eb;
+            font-weight: 600;
+          }
+          .q-block {
+            margin-top: 10px;
+            padding: 8px 10px;
+            border-bottom: 1px solid #e5e7eb;
+          }
+          .q-text {
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+          .meta-line {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+          }
+          .ans {
+            font-size: 14px;
+            margin-left: 8px;
+            margin-bottom: 3px;
+          }
+          .correct {
+            color: #16a34a;
+            font-weight: 600;
+          }
+          .wrong {
+            color: #dc2626;
+            font-weight: 600;
+          }
+          .exp {
+            font-size: 13px;
+            margin-left: 8px;
+            margin-top: 2px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="cover">
+          <h1>Web Technologies MCQ Review</h1>
+          <h2>HTML · CSS · JavaScript</h2>
+          <p><strong>Student:</strong> ${studentName}</p>
+          <p><strong>Date:</strong> ${dateStr}</p>
+          <p><strong>Attempted Questions:</strong> ${answeredIndices.length} / ${questions.length}</p>
+          <p><strong>Score:</strong> ${correctCount} Correct · ${wrongCount} Wrong</p>
+        </div>
+        <div class="page-break"></div>
+    `;
+
+    const unitsOrder = ["Unit I", "Unit II", "Unit III", "Unit IV"];
+    unitsOrder.forEach(unit => {
+      const unitIndices = answeredIndices.filter(idx => questions[idx].unit === unit);
+      if (unitIndices.length === 0) return;
+
+      html += `<div class="unit-title">${unit} – Attempted Questions</div>`;
+
+      unitIndices.forEach(idx => {
+        const q = questions[idx];
+        const st = state[idx];
+        const userAnsText =
+          st.selectedIndex != null ? q.options[st.selectedIndex] : "Not answered";
+        const correctAnsText = q.options[q.answer];
+        const className = st.isCorrect ? "correct" : "wrong";
+
+        html += `
+          <div class="q-block">
+            <div class="q-text">Q${idx + 1}. ${q.question}</div>
+            <div class="meta-line">Topic: ${q.topic} · Difficulty: ${q.difficulty}</div>
+            <div class="ans">Your Answer:
+              <span class="${className}">${userAnsText}</span>
+            </div>
+            <div class="ans">Correct Answer:
+              <strong>${correctAnsText}</strong>
+            </div>
+            <div class="exp">Explanation:<br>${q.explanation}</div>
+          </div>
+        `;
+      });
+    });
+
+    html += `
+      </body>
+      </html>
+    `;
+
+    const w = window.open("", "_blank");
+    w.document.write(html);
+    w.document.close();
+    w.focus();
+    // User can do: Print -> "Save as PDF"
+  });
+
+  // ================== INIT ==================
+  if (questions.length > 0) {
+    renderQuestion();
+  }
+</script>
+</body>
+</html>
